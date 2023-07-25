@@ -1,23 +1,17 @@
 <p-sidebar [(visible)]="sidebarVisible">
-	<h3>Sidebar</h3>
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-		veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-		commodo consequat.
-	</p>
+	<app-filters></app-filters>
 </p-sidebar>
 <div class="h-full mx-auto max-w-7xl border-x">
 	<div class="flex h-[100%] divide-x divide-solid">
-		<div class="flex items-start h-full max-w-sm">
-			<button
-				class="w-10 h-10 bg-slate-200"
-				(click)="sidebarVisible = true"
-			>
-				<i class="pi pi-bars"></i>
-			</button>
-			<div class="flex p-2">Filters</div>
+		<div class="flex items-start h-full max-w-md">
+			<app-filters (showCategory)="onShowCategory($event)"></app-filters>
 		</div>
-		<div class="w-full"></div>
+		<div class="w-full p-5">
+			<app-products-header
+				(columnsCountChange)="onColumnCountChange($event)"
+			></app-products-header>
+			{{ cols }}
+			{{ category }}
+		</div>
 	</div>
 </div>

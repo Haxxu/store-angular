@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 	sidebarVisible: boolean = false;
+	cols: number = 3;
+	category: string | undefined;
+
+	onColumnCountChange(colsNum: number) {
+		this.cols = colsNum;
+	}
+
+	onShowCategory(newCategory: string): void {
+		this.category = newCategory;
+	}
 }

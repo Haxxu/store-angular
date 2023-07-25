@@ -1,0 +1,31 @@
+:host ::ng-deep {
+	.p-accordion .p-accordion-header .p-accordion-header-link {
+		padding: 1rem;
+		border: none;
+		border-radius: 0;
+		line-height: 20px;
+		letter-spacing: 0em;
+		text-align: left;
+		background-color: #fff;
+		height: 60px;
+	}
+
+	.p-accordion
+		.p-accordion-header:not(.p-disabled).p-highlight
+		.p-accordion-header-link {
+		background-color: #fff;
+		height: 60px;
+	}
+
+	.p-accordion
+		.p-accordion-header:not(.p-disabled)
+		.p-accordion-header-link:focus {
+		box-shadow: none;
+	}
+
+	.p-accordion .p-accordion-content {
+		padding: 0rem 1rem;
+		border: none;
+		border-radius: 0;
+	}
+}
