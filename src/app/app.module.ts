@@ -11,6 +11,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { TableModule } from 'primeng/table';
 import { BadgeModule } from 'primeng/badge';
 import { MessagesModule } from 'primeng/messages';
+import { MatIconModule } from '@angular/material/icon';
+import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +20,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductsHeaderComponent } from './pages/home/components/products-header/products-header.component';
 import { FiltersComponent } from './pages/home/components/filters/filters.component';
+import { ProductBoxComponent } from './pages/home/components/product-box/product-box.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { HomeComponent as TestHomeComponent } from './test/components/home/home.component';
+import { NewsletterComponent } from './test/components/newsletter/newsletter.component';
+import { CartService } from './services/cart.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
 	declarations: [
@@ -26,6 +34,11 @@ import { FiltersComponent } from './pages/home/components/filters/filters.compon
 		HomeComponent,
 		ProductsHeaderComponent,
 		FiltersComponent,
+		ProductBoxComponent,
+		CartComponent,
+
+		NewsletterComponent,
+		TestHomeComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -41,8 +54,10 @@ import { FiltersComponent } from './pages/home/components/filters/filters.compon
 		TableModule,
 		BadgeModule,
 		MessagesModule,
+		MatIconModule,
+		MatSnackBarModule,
 	],
-	providers: [],
+	providers: [CartService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -11,3 +11,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import 'primeflex/primeflex.css';
+
+* {
+	box-sizing: border-box;
+}

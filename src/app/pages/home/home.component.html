@@ -10,8 +10,18 @@
 			<app-products-header
 				(columnsCountChange)="onColumnCountChange($event)"
 			></app-products-header>
-			{{ cols }}
-			{{ category }}
+			<div class="grid w-full mt-2" style="display: flex">
+				<div
+					[class]="'col-' + colsGridSystem"
+					[style.height.px]="rowHeight"
+					class="h-full"
+				>
+					<app-product-box
+						[fullWidthMode]="cols === 1"
+						(addToCart)="onAddToCart($event)"
+					></app-product-box>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

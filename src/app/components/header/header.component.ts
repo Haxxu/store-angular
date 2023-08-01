@@ -1,17 +1,31 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Cart } from 'src/app/models/cart.model';
 
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-	isOpenMenu: Boolean = false;
+export class HeaderComponent {
+	isOpenMenu: boolean = false;
+	private _cart: Cart = { items: [] };
+	itemsQuantity: number = 0;
 
-	ngOnInit(): void {}
+	@Input()
+	get cart(): Cart {
+		return this._cart;
+	}
+	set cart(cart: Cart) {
+		this._cart = cart;
 
-	toogleMenu(): void {
+		this.itemsQuantity = this._cart.items.reduce(
+			(curr, item) => item.quantity + curr,
+			0
+		);
+	}
+
+	toggleMenu(): void {
 		this.isOpenMenu = !this.isOpenMenu;
 	}
 
@@ -25,8 +39,11 @@ export class HeaderComponent implements OnInit {
 			'.custom-menu'
 		) as HTMLElement;
 
-		if (!menuButton.contains(target) && !menuContent.contains(target)) {
-			this.isOpenMenu = false;
+		// Check if menuButton and menuContent are not null before using contains method
+		if (menuButton && menuContent) {
+			if (!menuButton.contains(target) && !menuContent.contains(target)) {
+				this.isOpenMenu = false;
+			}
 		}
 	}
 }

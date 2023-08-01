@@ -1,0 +1,104 @@
+<p-card
+	*ngIf="cart.items.length; else noCartItems"
+	styleClass="max-w-7xl mx-auto"
+>
+	<p-table
+		[value]="dataSource"
+		styleClass="p-datatable-gridlines shadow-sm"
+		[tableStyle]="{ 'min-width': '50rem' }"
+	>
+		<ng-template pTemplate="header">
+			<tr>
+				<th>Product</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Total</th>
+				<th>
+					<p-button
+						label="Clear all"
+						styleClass="p-button-danger p-button-sm"
+						class="float-right"
+					>
+					</p-button>
+				</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body">
+			<tr *ngFor="let item of cart.items">
+				<td>
+					<img
+						[src]="item.product"
+						[alt]="item.name"
+						class="w-[100px] my-5"
+					/>
+				</td>
+				<td>
+					<p class="max-w-xs truncate">
+						{{ item.name }}
+					</p>
+				</td>
+				<td>{{ item.price | currency }}</td>
+				<td>
+					<div class="flex items-center justify-center">
+						<p-button
+							styleClass="p-button-rounded p-button-secondary p-button-text p-button-sm"
+						>
+							<mat-icon>remove</mat-icon>
+						</p-button>
+						<span>
+							{{ item.quantity }}
+						</span>
+						<p-button
+							styleClass="p-button-rounded p-button-secondary p-button-text p-button-sm"
+						>
+							<mat-icon>add</mat-icon>
+						</p-button>
+					</div>
+				</td>
+				<td>{{ item.price * item.quantity | currency }}</td>
+				<td>
+					<p-button
+						icon="pi pi-times"
+						class="float-right mr-5"
+						styleClass="p-button-rounded p-button-danger"
+					></p-button>
+				</td>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="footer">
+			<tr>
+				<td>
+					<p-button
+						label="Continue Shopping"
+						styleClass="p-button-raised p-button-text p-button-secondary"
+						routerLink="/home"
+					></p-button>
+				</td>
+				<td colspan="3"></td>
+				<td>Total: {{ getTotal() | currency }}</td>
+				<td>
+					<p-button
+						label="Proceed to checkout"
+						styleClass="p-button-raised p-button-help"
+						class="float-right"
+					>
+					</p-button>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</p-card>
+<ng-template #noCartItems>
+	<p-card styleClass="max-w-7xl mx-auto">
+		<p class="flex items-center">
+			Your cart is empty.
+			<p-button
+				styleClass="p-button-raised p-button-secondary p-button-sm"
+				routerLink="/home"
+			>
+				Start shopping
+			</p-button>
+		</p>
+	</p-card>
+</ng-template>
