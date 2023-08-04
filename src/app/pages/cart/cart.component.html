@@ -76,7 +76,7 @@
 					></p-button>
 				</td>
 				<td colspan="3"></td>
-				<td>Total: {{ getTotal() | currency }}</td>
+				<td>Total: {{ getTotal(cart.items) | currency }}</td>
 				<td>
 					<p-button
 						label="Proceed to checkout"

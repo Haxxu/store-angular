@@ -26,6 +26,7 @@ import { HomeComponent as TestHomeComponent } from './test/components/home/home.
 import { NewsletterComponent } from './test/components/newsletter/newsletter.component';
 import { CartService } from './services/cart.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
 	declarations: [
@@ -56,8 +57,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 		MessagesModule,
 		MatIconModule,
 		MatSnackBarModule,
+		ToastModule,
 	],
-	providers: [CartService],
+	providers: [CartService, MessageService],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

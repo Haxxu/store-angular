@@ -37,12 +37,13 @@
 						<div class="flex justify-between py-3 font-light">
 							Total:
 							<span class="font-bold">{{
-								'150' | currency
+								getTotal(cart.items) | currency
 							}}</span>
 						</div>
 						<div class="flex justify-between py-3">
 							<p-button
 								styleClass="p-button-rounded p-button-danger"
+								(onClick)="onClearCart()"
 							>
 								<mat-icon>remove_shopping_cart</mat-icon>
 							</p-button>

@@ -1,6 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Cart } from 'src/app/models/cart.model';
+import { Cart, CartItem } from 'src/app/models/cart.model';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
 	selector: 'app-header',
@@ -11,23 +12,6 @@ export class HeaderComponent {
 	isOpenMenu: boolean = false;
 	private _cart: Cart = { items: [] };
 	itemsQuantity: number = 0;
-
-	@Input()
-	get cart(): Cart {
-		return this._cart;
-	}
-	set cart(cart: Cart) {
-		this._cart = cart;
-
-		this.itemsQuantity = this._cart.items.reduce(
-			(curr, item) => item.quantity + curr,
-			0
-		);
-	}
-
-	toggleMenu(): void {
-		this.isOpenMenu = !this.isOpenMenu;
-	}
 
 	@HostListener('document:click', ['$event'])
 	onDocumentClick(event: MouseEvent) {
@@ -45,5 +29,32 @@ export class HeaderComponent {
 				this.isOpenMenu = false;
 			}
 		}
+	}
+
+	@Input()
+	get cart(): Cart {
+		return this._cart;
+	}
+	set cart(cart: Cart) {
+		this._cart = cart;
+
+		this.itemsQuantity = this._cart.items.reduce(
+			(curr, item) => item.quantity + curr,
+			0
+		);
+	}
+
+	constructor(private cartService: CartService) {}
+
+	toggleMenu(): void {
+		this.isOpenMenu = !this.isOpenMenu;
+	}
+
+	getTotal(items: Array<CartItem>): number {
+		return this.cartService.getTotal(items);
+	}
+
+	onClearCart() {
+		this.cartService.clearCart();
 	}
 }
